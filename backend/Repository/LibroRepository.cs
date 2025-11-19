@@ -12,15 +12,21 @@ namespace Biblio.Repositories
             _connectionString = p_configuration.GetConnectionString("BiblioDB") ?? "";
         }
 
-        public Task<Libro> DeleteLibroAsync()
+        public async Task DeleteLibroAsync(string ISBNLibro)
         {
-            throw new NotImplementedException();
+            using(MySqlConnection conn = new MySqlConnection(_connectionString))
+            {
+                await conn.OpenAsync();
+                string query = "DELETE FROM Libro WHERE ISBN = @ISBN ;";
+                using (MySqlCommand command = new MySqlCommand(query, conn))
+                {
+                    command.Parameters.AddWithValue("@ISBN", ISBNLibro);
+                    await command.ExecuteNonQueryAsync();
+                }
+            }
         }
 
-        public Task<Libro> GetLibroAsync()
-        {
-            throw new NotImplementedException(); 
-        }
+        
 
         public async Task<List<Libro>> GetLibrosAsync()
         {
@@ -59,5 +65,6 @@ namespace Biblio.Repositories
         {
             throw new NotImplementedException();
         }
+
     }
 }

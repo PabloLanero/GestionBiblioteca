@@ -16,5 +16,10 @@ namespace Biblio.Services
             List<Libro> libros = await _libroRepository.GetLibrosAsync();
             return libros;
         }
+
+        public async Task DeleteLibroAsync(string ISBNLibro)
+        {
+            await _libroRepository.DeleteLibroAsync(ISBNLibro);
+        }
     }
 }

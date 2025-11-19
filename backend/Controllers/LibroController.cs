@@ -23,5 +23,12 @@ namespace Biblio.Controllers
             
             return Ok(lstLibros);
         }
+
+        [HttpDelete]
+        public async Task<ActionResult> DeleteLibroAsync([FromQuery(Name = "ISBN")] string ISBN)
+        {
+            await _libroService.DeleteLibroAsync(ISBN);
+            return Ok();
+        }
     }
 }
