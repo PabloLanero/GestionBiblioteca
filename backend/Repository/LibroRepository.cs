@@ -1,6 +1,7 @@
 using System.Data.Common;
 using Biblio.models;
 using MySql.Data.MySqlClient;
+using MySql.Data.Types;
 
 namespace Biblio.Repositories
 {
@@ -12,6 +13,7 @@ namespace Biblio.Repositories
             _connectionString = p_configuration.GetConnectionString("BiblioDB") ?? "";
         }
 
+        //No funcionara de forma normal, ya que tiene los indices puestos
         public async Task DeleteLibroAsync(string ISBNLibro)
         {
             using(MySqlConnection conn = new MySqlConnection(_connectionString))
@@ -61,9 +63,39 @@ namespace Biblio.Repositories
             return libros;
         }
 
-        public Task<Libro> PostLibroAsync()
+        public async Task PostLibroAsync(string ISBNLibro, Libro libro)
         {
-            throw new NotImplementedException();
+            bool bRet = true;
+            using(MySqlConnection conn = new MySqlConnection(_connectionString))
+            {
+                conn.OpenAsync();
+                string query = "UPDATE Libro SET ";  //",  WHERE  `ISBN`='978-84-204-8312-5';":
+                //Recordar preguntar a alejandro si hay alguna forma optima de hacerlo de verdad, porque acaban siendo demasiados ifs
+                bool hayUnValor = false;
+                if(string.IsNullOrEmpty(libro.Titulo)) query += "Titulo = @Titulo " +(hayUnValor ? ", "/*Realmente nunca pondra esta coma*/: hayUnValor = true );
+                if(string.IsNullOrEmpty(libro.Genero)) query += (hayUnValor ? ", ": hayUnValor = true )+" Genero = @Genero ";
+                if(libro.NumeroPaginas >0) query += (hayUnValor ? ", ": hayUnValor = true )+" NumeroPaginas= @NumeroPaginas ";
+                if(libro.Precio >0) query += (hayUnValor ? ", ": hayUnValor = true )+ " Precio = @Precio ";
+                if(libro.Disponible != null) query += (hayUnValor ? ", ": hayUnValor = true )+" Disponible = @Disponible ";
+                if(libro.FechaPublicacion != null) query += (hayUnValor ? ", ": hayUnValor = true )+" FechaPublicacion = @FechaPublicacion ";
+                if(hayUnValor) query += " WHERE ISBN= @ISBN ;";
+                else throw new Exception("No hay ningun campo valido para poder cambiar");
+
+                //Una vez validado los datos para poder meterlos, empezamos a meter datos
+                using(MySqlCommand command = new MySqlCommand(query, conn))
+                {
+                    if(string.IsNullOrEmpty(libro.Titulo)) command.Parameters.AddWithValue("@Titulo",libro.Titulo);
+                    if(string.IsNullOrEmpty(libro.Genero)) command.Parameters.AddWithValue("@Genero",libro.Genero);
+                    if(libro.NumeroPaginas >0) command.Parameters.AddWithValue("@NumeroPaginas",libro.NumeroPaginas);
+                    if(libro.Precio >0) command.Parameters.AddWithValue("@Precio",libro.Precio);
+                    if(libro.Disponible != null) command.Parameters.AddWithValue("@Disponible",libro.Disponible);
+                    if(libro.FechaPublicacion != null) command.Parameters.AddWithValue("@FechaPublicacion", libro.FechaPublicacion);
+                    await command.ExecuteNonQueryAsync();
+                }
+
+            }
+
+            return ;
         }
 
     }
