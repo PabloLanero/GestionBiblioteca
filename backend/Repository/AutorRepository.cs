@@ -46,14 +46,69 @@ namespace Biblio.Repositories
             return autors;
         }
 
-        public Task<bool> PostAutorAsync()
+        public async Task<bool> PostAutorAsync(Autor autor)
         {
-            throw new NotImplementedException();
+            bool bRet = true;
+            using(MySqlConnection conn = new MySqlConnection(_connectionString))
+            {
+                await conn.OpenAsync();
+                string query = "INSERT INTO Autor (Id, Nombre, Apellido, Nacionalidad, FechaNacimiento, EstaVivo, Biografia) VALUES "+
+                    "(@Id, @Nombre, @Apellido, @Nacionalidad, @FechaNacimiento, @EstaVivo, @Biografia);";
+                using(MySqlCommand command = new MySqlCommand(query, conn))
+                {
+                    command.Parameters.AddWithValue("@Id",autor.Id);
+                    command.Parameters.AddWithValue("@Nombre",autor.Nombre);
+                    command.Parameters.AddWithValue("@Apellido",autor.Apellido);
+                    command.Parameters.AddWithValue("@Nacionalidad",autor.Nacionalidad);
+                    command.Parameters.AddWithValue("@FechaNacimiento",autor.FechaNacimiento);
+                    command.Parameters.AddWithValue("@EstaVivo",autor.EstaVivo);
+                    command.Parameters.AddWithValue("@Biografia",autor.Biografia);
+                    int rowsAffected = await command.ExecuteNonQueryAsync();
+                    if(rowsAffected != 1)
+                    {
+                        bRet=false;
+                        if(rowsAffected >1)throw new Exception("Algo raro ha pasado, mas de una fila modificada");
+                    }
+                }
+            }
+            return bRet;
         }
 
-        public Task<bool> PutAutorAsync()
+        public async Task<bool> PutAutorAsync(Autor autor)
         {
-            throw new NotImplementedException();
+            bool bRet = true;
+            using (MySqlConnection conn = new MySqlConnection(_connectionString))
+            {
+                await conn.OpenAsync();
+                string query = "UPDATE Autor SET Id = Id, ";
+                if(!string.IsNullOrEmpty(autor.Nombre)) query += "Nombre = @Nombre , ";
+                if(!string.IsNullOrEmpty(autor.Apellido)) query += "Apellido = @Apellido , ";
+                if(!string.IsNullOrEmpty(autor.Nacionalidad))query += "Nacionalidad = @Nacionalidad , ";
+                if(DateTime.Now >autor.FechaNacimiento)query += "FechaNacimiento = @FechaNacimiento , ";
+                if(autor.EstaVivo != null)query += "EstaVivo = @EstaVivo , ";
+                if(!string.IsNullOrEmpty(autor.Biografia))query += "Biografia = @Biografia , ";
+
+                query +=" Id = Id WHERE Id = @Id ;";
+
+                using(MySqlCommand command = new MySqlCommand(query, conn))
+                {
+                    command.Parameters.AddWithValue("@Id",autor.Id);
+                    if(!string.IsNullOrEmpty(autor.Nombre)) command.Parameters.AddWithValue("@Nombre",autor.Nombre);
+                    if(!string.IsNullOrEmpty(autor.Apellido)) command.Parameters.AddWithValue("@Apellido",autor.Apellido);
+                    if(!string.IsNullOrEmpty(autor.Nacionalidad))command.Parameters.AddWithValue("@Nacionalidad",autor.Nacionalidad);
+                    if(DateTime.Now >autor.FechaNacimiento)command.Parameters.AddWithValue("@FechaNacimiento",autor.FechaNacimiento);
+                    if(autor.EstaVivo != null)command.Parameters.AddWithValue("@EstaVivo",autor.EstaVivo);
+                    if(!string.IsNullOrEmpty(autor.Biografia))command.Parameters.AddWithValue("@Biografia",autor.Biografia);
+
+                    int rowsAffected = await command.ExecuteNonQueryAsync();
+                    if(rowsAffected != 1)
+                    {
+                        bRet = false;
+                        if(rowsAffected>1)throw new Exception("Algo ha pasado y ha afectado a varias filas");
+                    }
+                }
+            }
+            return bRet;
         }
         public async Task<bool> DeleteAutorAsync(int id)
         {

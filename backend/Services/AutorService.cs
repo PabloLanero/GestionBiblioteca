@@ -19,14 +19,16 @@ namespace Biblio.Services
             return autors;
         }
 
-        public Task<bool> PostAutorAsync()
+        public async Task<bool> PostAutorAsync(Autor autor)
         {
-            throw new NotImplementedException();
+            bool bRet = await _autorRepository.PostAutorAsync(autor);
+            return bRet;
         }
 
-        public Task<bool> PutAutorAsync()
+        public async Task<bool> PutAutorAsync(Autor autor)
         {
-            throw new NotImplementedException();
+            bool bRet = await _autorRepository.PutAutorAsync(autor);
+            return bRet;
         }
         public async Task<bool> DeleteAutorAsync(int id)
         {
