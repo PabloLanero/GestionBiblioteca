@@ -13,23 +13,6 @@ namespace Biblio.Repositories
             _connectionString = p_configuration.GetConnectionString("BiblioDB") ?? "";
         }
 
-        //No funcionara de forma normal, ya que tiene los indices puestos
-        public async Task DeleteLibroAsync(string ISBNLibro)
-        {
-            using(MySqlConnection conn = new MySqlConnection(_connectionString))
-            {
-                await conn.OpenAsync();
-                string query = "DELETE FROM Libro WHERE ISBN = @ISBN ;";
-                using (MySqlCommand command = new MySqlCommand(query, conn))
-                {
-                    command.Parameters.AddWithValue("@ISBN", ISBNLibro);
-                    await command.ExecuteNonQueryAsync();
-                }
-            }
-        }
-
-        
-
         public async Task<List<Libro>> GetLibrosAsync()
         {
             List<Libro> libros = new List<Libro>();
@@ -63,17 +46,17 @@ namespace Biblio.Repositories
             return libros;
         }
 
-        public async Task PostLibroAsync(string ISBNLibro, Libro libro)
+        public async Task<bool> PutLibroAsync( Libro libro)
         {
             bool bRet = true;
             using(MySqlConnection conn = new MySqlConnection(_connectionString))
             {
                 conn.OpenAsync();
-                string query = "UPDATE Libro SET ";  //",  WHERE  `ISBN`='978-84-204-8312-5';":
+                string query = "UPDATE Libro SET ";  
                 //Recordar preguntar a alejandro si hay alguna forma optima de hacerlo de verdad, porque acaban siendo demasiados ifs
                 bool hayUnValor = false;
-                if(string.IsNullOrEmpty(libro.Titulo)) query += "Titulo = @Titulo " +(hayUnValor ? ", "/*Realmente nunca pondra esta coma*/: hayUnValor = true );
-                if(string.IsNullOrEmpty(libro.Genero)) query += (hayUnValor ? ", ": hayUnValor = true )+" Genero = @Genero ";
+                if(!string.IsNullOrEmpty(libro.Titulo)) query += "Titulo = @Titulo " +(hayUnValor ? ", "/*Realmente nunca pondra esta coma*/: hayUnValor = true );
+                if(!string.IsNullOrEmpty(libro.Genero)) query += (hayUnValor ? ", ": hayUnValor = true )+" Genero = @Genero ";
                 if(libro.NumeroPaginas >0) query += (hayUnValor ? ", ": hayUnValor = true )+" NumeroPaginas= @NumeroPaginas ";
                 if(libro.Precio >0) query += (hayUnValor ? ", ": hayUnValor = true )+ " Precio = @Precio ";
                 if(libro.Disponible != null) query += (hayUnValor ? ", ": hayUnValor = true )+" Disponible = @Disponible ";
@@ -90,12 +73,49 @@ namespace Biblio.Repositories
                     if(libro.Precio >0) command.Parameters.AddWithValue("@Precio",libro.Precio);
                     if(libro.Disponible != null) command.Parameters.AddWithValue("@Disponible",libro.Disponible);
                     if(libro.FechaPublicacion != null) command.Parameters.AddWithValue("@FechaPublicacion", libro.FechaPublicacion);
-                    await command.ExecuteNonQueryAsync();
+                    command.Parameters.AddWithValue("@ISBN", libro.ISBN);
+                    int rowsAfected = await command.ExecuteNonQueryAsync();
+                    if (rowsAfected != 1)
+                    {
+                        bRet = false;
+                        if(rowsAfected >1)throw new Exception("Ha afectado a mas de una fila, esto no deberia de pasar");
+                    }
                 }
+            }
+            return bRet;
+        }
+        public async Task<bool> PostLibroAsync(Libro libro)
+        {
+            bool bRet = true;
+            using(MySqlConnection conn = new MySqlConnection(_connectionString))
+            {
+                await conn.OpenAsync();
+                string query = "INSERT INTO Libro VALUES ()";
 
             }
+            return bRet;
+        }
 
-            return ;
+        //No funcionara de forma normal, ya que tiene los indices puestos
+        public async Task<bool> DeleteLibroAsync(string ISBNLibro)
+        {
+            bool bRet = true;
+            using(MySqlConnection conn = new MySqlConnection(_connectionString))
+            {
+                await conn.OpenAsync();
+                string query = "DELETE FROM Libro WHERE ISBN = @ISBN ;";
+                using (MySqlCommand command = new MySqlCommand(query, conn))
+                {
+                    command.Parameters.AddWithValue("@ISBN", ISBNLibro);
+                    int rowsAffected = await command.ExecuteNonQueryAsync();
+                    if(rowsAffected != 1)
+                    {
+                        bRet = false;
+                        if(rowsAffected>1)throw new Exception("Ha afectado a mas de una fila, revisa que ha pasado");
+                    }
+                }
+            }
+            return bRet;
         }
 
     }
