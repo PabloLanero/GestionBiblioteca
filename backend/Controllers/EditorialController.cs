@@ -1,0 +1,42 @@
+using Biblio.models;
+using Biblio.Services;
+using Microsoft.AspNetCore.Mvc;
+
+namespace Biblio.Controllers
+{
+    [ApiController]
+    [Route("api/[controller]")]
+    public class EditorialController : ControllerBase
+    {
+        private readonly IEditorialService _editorialService;
+        public EditorialController(IEditorialService p_editorialService)
+        {
+            _editorialService = p_editorialService;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<Editorial>>> GetEditorialesAsync()
+        {
+            List<Editorial> editorials = await _editorialService.GetEditorialesAsync();
+            return Ok(editorials);
+        }
+        [HttpPost]
+        public async Task<ActionResult<bool>> PostEditorial(Editorial editorial)
+        {
+            bool bRet = await _editorialService.PostEditorialAsync(editorial);
+            return Ok(bRet);
+        }
+        [HttpPut]
+        public async Task<ActionResult<bool>> PutEditorial(Editorial editorial)
+        {
+            bool bRet = await _editorialService.PutEditorialAsync(editorial);
+            return Ok(bRet);
+        }
+        [HttpDelete]
+        public async Task<ActionResult<bool>> DeleteEditorial(int id)
+        {
+            bool bRet = await _editorialService.DeleteEditorialAsync(id);
+            return Ok(bRet);
+        }
+    }
+}
