@@ -11,8 +11,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddScoped<ILibroRepository,LibroRepository>();
 builder.Services.AddScoped<IAutorRepository,AutorRepository>();
+builder.Services.AddScoped<IEditorialRepository,EditorialRepository>();
+builder.Services.AddScoped<IUsuarioRepository,UsuarioRepository>();
+builder.Services.AddScoped<IUsuarioService,UsuarioService>();
 builder.Services.AddScoped<IAutorService,AutorService>();
 builder.Services.AddScoped<ILibroService,LibroService>();
+builder.Services.AddScoped<IEditorialService,EditorialService>();
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
