@@ -8,9 +8,9 @@ namespace Biblio.Controllers
     [Route("api/[controller]")]
     public class LibroController : ControllerBase
     {
-        private readonly ILogger<Libro> _logger;
+        private readonly ILogger<LibroController> _logger;
         private readonly ILibroService _libroService;
-        public LibroController(ILogger<Libro> logger, ILibroService libroService)
+        public LibroController(ILogger<LibroController> logger, ILibroService libroService)
         {
             _logger = logger;
             _libroService =libroService;
@@ -20,7 +20,8 @@ namespace Biblio.Controllers
         public async Task<ActionResult<List<Libro>>> GetAllLibros()
         {
             List<Libro> lstLibros = await _libroService.GetLibrosAsync();
-            
+            var info =  string.Join( ",", lstLibros );
+            _logger.LogDebug("lstlibros: " + info);
             return Ok(lstLibros);
         }
 

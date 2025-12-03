@@ -77,7 +77,7 @@ namespace Biblio.Repositories
             using(MySqlConnection conn = new MySqlConnection(_connectionString))
             {
                 await conn.OpenAsync();
-                string query = "UPDATE Editorial SET Id = Id, ";
+                string query = "UPDATE Usuario SET Id = Id, ";
                 if(!string.IsNullOrEmpty(usuario.Nombre)) query += "Nombre = @Nombre , ";
                 if(!string.IsNullOrEmpty(usuario.Apellido)) query += "Apellido = @Apellido , ";
                 if(!string.IsNullOrEmpty(usuario.Email))query += "Email = @Email , ";
