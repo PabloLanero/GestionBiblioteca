@@ -17,9 +17,21 @@ namespace Biblio.Services
             return libros;
         }
 
-        public async Task DeleteLibroAsync(string ISBNLibro)
+        public async Task<bool> PostLibroAsync(Libro libro)
         {
-            await _libroRepository.DeleteLibroAsync(ISBNLibro);
+            bool bRet = await _libroRepository.PostLibroAsync(libro);
+            return bRet;
+        }
+        public async Task<bool> PutLibroAsync(Libro libro)
+        {
+            bool bRet = await _libroRepository.PutLibroAsync(libro);
+            return bRet;
+        }
+
+        public async Task<bool> DeleteLibroAsync(string ISBNLibro)
+        {
+            bool bRet = await _libroRepository.DeleteLibroAsync(ISBNLibro);
+            return bRet;
         }
     }
 }

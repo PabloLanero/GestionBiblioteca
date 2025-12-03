@@ -51,7 +51,7 @@ namespace Biblio.Repositories
             bool bRet = true;
             using(MySqlConnection conn = new MySqlConnection(_connectionString))
             {
-                conn.OpenAsync();
+                await conn.OpenAsync();
                 string query = "UPDATE Libro SET ";  
                 //Recordar preguntar a alejandro si hay alguna forma optima de hacerlo de verdad, porque acaban siendo demasiados ifs
                 bool hayUnValor = false;
@@ -90,7 +90,23 @@ namespace Biblio.Repositories
             using(MySqlConnection conn = new MySqlConnection(_connectionString))
             {
                 await conn.OpenAsync();
-                string query = "INSERT INTO Libro VALUES ()";
+                string query = "INSERT INTO Libro (ISBN, Titulo, Genero, NumeroPaginas, Precio, Disponible, FechaPublicacion) VALUES (@ISBN, @Titulo, @Genero, @NumeroPaginas, @Precio, @Disponible, @FechaPublicacion);";
+                using(MySqlCommand command = new MySqlCommand(query, conn))
+                {
+                    command.Parameters.AddWithValue("@ISBN",libro.ISBN);
+                    command.Parameters.AddWithValue("@Titulo",libro.Titulo);
+                    command.Parameters.AddWithValue("@Genero",libro.Genero);
+                    command.Parameters.AddWithValue("@NumeroPaginas",libro.NumeroPaginas);
+                    command.Parameters.AddWithValue("@Precio",libro.Precio);
+                    command.Parameters.AddWithValue("@Disponible",libro.Disponible);
+                    command.Parameters.AddWithValue("@FechaPublicacion",libro.FechaPublicacion);
+                    int rowsAfected = await command.ExecuteNonQueryAsync();
+                    if(rowsAfected != 1)
+                    {
+                        bRet=false;
+                        if(rowsAfected>1)throw new Exception("Ha afectado a mas de una columna, revisa la base de datos");
+                    }
+                }
 
             }
             return bRet;

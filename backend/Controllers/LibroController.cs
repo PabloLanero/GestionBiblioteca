@@ -24,6 +24,18 @@ namespace Biblio.Controllers
             _logger.LogDebug("lstlibros: " + info);
             return Ok(lstLibros);
         }
+        [HttpPost]
+        public async Task<ActionResult<bool>> PostLibroAsync([FromBody]Libro libro)
+        {
+            bool bRet = await _libroService.PostLibroAsync(libro);
+            return Ok(bRet);
+        }
+        [HttpPut]
+        public async Task<ActionResult<bool>> PutLibroAsync([FromBody]Libro libro)
+        {
+            bool bRet = await _libroService.PutLibroAsync(libro);
+            return Ok(bRet);
+        }
 
         [HttpDelete]
         public async Task<ActionResult> DeleteLibroAsync([FromQuery(Name = "ISBN")] string ISBN)
