@@ -1,0 +1,36 @@
+version: '1.0'
+
+services:
+  api:
+    build: 
+      context: ./backend/ 
+      dockerfile: Dockerfile
+    ports:
+      - "8841:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      # - ConnectionStrings__DefaultConnection=server=localhost;Port=1488;uid=\"root\";pwd=\"MySup3rP4ssw0rd!\";database=BiblioDB;
+    networks:
+      - backend
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    ports:
+      - "1488:3306"
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_ROOT_PASSWORD=MySup3rP4ssw0rd!
+      - MYSQL_DATABASE=BiblioDB
+    networks:
+      - backend
+    volumes:
+      - bbddScripts:/var/lib/mysql
+      - ./bbddScripts:/docker-entrypoint-initdb.d/
+    
+networks:
+  backend:
+volumes:
+  bbddScripts:
