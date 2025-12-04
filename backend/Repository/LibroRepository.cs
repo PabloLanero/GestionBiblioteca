@@ -45,6 +45,41 @@ namespace Biblio.Repositories
 
             return libros;
         }
+        public async Task<Libro> GetOneLibroAsync(string ISBN)
+        {
+            Libro librito = new Libro
+            {
+                ISBN = ISBN
+            };
+            using(MySqlConnection conn = new MySqlConnection(_connectionString))
+            {
+                await conn.OpenAsync();
+                string query = "SELECT ISBN, Titulo, Genero, Precio, Disponible, NumeroPaginas,FechaPublicacion FROM Libro WHERE ISBN = @ISBN";
+                using (MySqlCommand command = new MySqlCommand(query, conn))
+                {
+                    command.Parameters.AddWithValue("@ISBN",ISBN);
+                    using (DbDataReader reader = await command.ExecuteReaderAsync())
+                    {
+                        while (reader.Read())
+                        {
+                            librito = new Libro
+                            {
+                                ISBN = reader.GetString(0),
+                                Titulo = reader.GetString(1),
+                                Genero = reader.GetString(2),
+                                Precio = (double)reader.GetDecimal(3),
+                                Disponible = reader.GetBoolean(4),
+                                FechaPublicacion = reader.GetDateTime(6),
+                                NumeroPaginas = reader.GetInt32(5)  
+                            };
+                            
+                        }
+                    }
+                }
+                await conn.CloseAsync();
+            }
+            return librito;
+        }
 
         public async Task<bool> PutLibroAsync( Libro libro)
         {
@@ -134,5 +169,6 @@ namespace Biblio.Repositories
             return bRet;
         }
 
+        
     }
 }

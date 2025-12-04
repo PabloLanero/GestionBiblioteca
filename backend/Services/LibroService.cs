@@ -16,6 +16,11 @@ namespace Biblio.Services
             List<Libro> libros = await _libroRepository.GetLibrosAsync();
             return libros;
         }
+        public async Task<Libro> GetOneLibroAsync(string ISBN)
+        {
+            Libro libro = await _libroRepository.GetOneLibroAsync(ISBN);
+            return libro;
+        }
 
         public async Task<bool> PostLibroAsync(Libro libro)
         {
@@ -33,5 +38,7 @@ namespace Biblio.Services
             bool bRet = await _libroRepository.DeleteLibroAsync(ISBNLibro);
             return bRet;
         }
+
+        
     }
 }
