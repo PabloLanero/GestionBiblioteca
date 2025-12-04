@@ -52,23 +52,23 @@ namespace Biblio.Repositories
             using(MySqlConnection conn = new MySqlConnection(_connectionString))
             {
                 await conn.OpenAsync();
-                string query = "UPDATE Libro SET ";  
+                string query = "UPDATE Libro SET ISBN = ISBN ";  
                 //Recordar preguntar a alejandro si hay alguna forma optima de hacerlo de verdad, porque acaban siendo demasiados ifs
-                bool hayUnValor = false;
-                if(!string.IsNullOrEmpty(libro.Titulo)) query += "Titulo = @Titulo " +(hayUnValor ? ", "/*Realmente nunca pondra esta coma*/: hayUnValor = true );
-                if(!string.IsNullOrEmpty(libro.Genero)) query += (hayUnValor ? ", ": hayUnValor = true )+" Genero = @Genero ";
-                if(libro.NumeroPaginas >0) query += (hayUnValor ? ", ": hayUnValor = true )+" NumeroPaginas= @NumeroPaginas ";
-                if(libro.Precio >0) query += (hayUnValor ? ", ": hayUnValor = true )+ " Precio = @Precio ";
-                if(libro.Disponible != null) query += (hayUnValor ? ", ": hayUnValor = true )+" Disponible = @Disponible ";
-                if(libro.FechaPublicacion != null) query += (hayUnValor ? ", ": hayUnValor = true )+" FechaPublicacion = @FechaPublicacion ";
-                if(hayUnValor) query += " WHERE ISBN= @ISBN ;";
-                else throw new Exception("No hay ningun campo valido para poder cambiar");
+                
+                if(!string.IsNullOrEmpty(libro.Titulo)) query += ", Titulo = @Titulo "; 
+                if(!string.IsNullOrEmpty(libro.Genero)) query += ", Genero = @Genero ";
+                if(libro.NumeroPaginas >0) query += ", NumeroPaginas= @NumeroPaginas ";
+                if(libro.Precio >0) query += ", Precio = @Precio ";
+                if(libro.Disponible != null) query += ", Disponible = @Disponible ";
+                if(libro.FechaPublicacion != null) query += ", FechaPublicacion = @FechaPublicacion ";
+                query += " WHERE ISBN= @ISBN ;";
+                
 
                 //Una vez validado los datos para poder meterlos, empezamos a meter datos
                 using(MySqlCommand command = new MySqlCommand(query, conn))
                 {
-                    if(string.IsNullOrEmpty(libro.Titulo)) command.Parameters.AddWithValue("@Titulo",libro.Titulo);
-                    if(string.IsNullOrEmpty(libro.Genero)) command.Parameters.AddWithValue("@Genero",libro.Genero);
+                    if(!string.IsNullOrEmpty(libro.Titulo)) command.Parameters.AddWithValue("@Titulo",libro.Titulo);
+                    if(!string.IsNullOrEmpty(libro.Genero)) command.Parameters.AddWithValue("@Genero",libro.Genero);
                     if(libro.NumeroPaginas >0) command.Parameters.AddWithValue("@NumeroPaginas",libro.NumeroPaginas);
                     if(libro.Precio >0) command.Parameters.AddWithValue("@Precio",libro.Precio);
                     if(libro.Disponible != null) command.Parameters.AddWithValue("@Disponible",libro.Disponible);
