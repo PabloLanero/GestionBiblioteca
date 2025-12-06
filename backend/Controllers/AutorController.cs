@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Biblio.models;
 using Biblio.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -70,7 +71,7 @@ namespace Biblio.Controllers
         /// <return>Returns comment</return>
         /// <response code="200">Ok</response>
         [HttpDelete]
-        public async Task<ActionResult<bool>> DeleteAutor([FromQuery] int id)
+        public async Task<ActionResult<bool>> DeleteAutor([FromQuery(Name ="IdAutor")][Required] int id)
         {
             bool borrado = await _autorService.DeleteAutorAsync(id);
             return Ok(borrado);

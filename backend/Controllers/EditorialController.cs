@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Biblio.models;
 using Biblio.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -33,7 +34,7 @@ namespace Biblio.Controllers
             return Ok(bRet);
         }
         [HttpDelete]
-        public async Task<ActionResult<bool>> DeleteEditorial(int id)
+        public async Task<ActionResult<bool>> DeleteEditorial([FromQuery(Name ="IdEditorial")][Required]int id)
         {
             bool bRet = await _editorialService.DeleteEditorialAsync(id);
             return Ok(bRet);

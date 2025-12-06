@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Biblio.models;
 using Biblio.Services;
+using System.ComponentModel.DataAnnotations;
 
 namespace Biblio.Controllers
 {
@@ -38,10 +39,10 @@ namespace Biblio.Controllers
         }
 
         [HttpDelete]
-        public async Task<ActionResult> DeleteLibroAsync([FromQuery(Name = "ISBN")] string ISBN)
+        public async Task<ActionResult<bool>> DeleteLibroAsync([FromQuery(Name = "ISBN")][Required] string ISBN)
         {
-            await _libroService.DeleteLibroAsync(ISBN);
-            return Ok();
+            bool bRet =await _libroService.DeleteLibroAsync(ISBN);
+            return Ok(bRet);
         }
     }
 }

@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Biblio.models;
 using Biblio.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -33,7 +34,7 @@ namespace Biblio.Controllers
             return Ok(bRet);
         }
         [HttpDelete]
-        public async Task<ActionResult<bool>> DeleteAllUsuarios([FromQuery(Name ="idUsuario")]int idUsuario)
+        public async Task<ActionResult<bool>> DeleteAllUsuarios([FromQuery(Name ="idUsuario")][Required]int idUsuario)
         {
             bool bRet = await _usuarioService.DeleteUsuariosAsync(idUsuario);
             return Ok(bRet);
