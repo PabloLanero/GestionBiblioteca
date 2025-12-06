@@ -1,4 +1,5 @@
 using System.Data.Common;
+using Biblio.Exceptions;
 using Biblio.models;
 using MySql.Data.MySqlClient;
 using Mysqlx.Resultset;
@@ -65,7 +66,7 @@ namespace Biblio.Repositories
                     if(rowsAffected != 1)
                     {
                         bRet=false;
-                        if(rowsAffected >1)throw new Exception("Algo raro ha pasado, mas de una fila modificada");
+                        if(rowsAffected >1)throw new MoreThanOneRowException();
                     }
                 }
             }
@@ -99,7 +100,7 @@ namespace Biblio.Repositories
                     if(rowsAffected != 1)
                     {
                         bRet= false;
-                        if(rowsAffected>1)throw new Exception("Ha afectado a mas de una fila, revisa la base de datos");
+                        if(rowsAffected>1)throw new MoreThanOneRowException();
                     }
                 }
             }
@@ -119,7 +120,7 @@ namespace Biblio.Repositories
                     if(rowsAffected != 1)
                     {
                         bRet = false;
-                        if(rowsAffected >1)throw new Exception("Se ha modificado mas de una fila, revisar la base de datos ");
+                        if(rowsAffected >1)throw new MoreThanOneRowException();
                     }
                 }
             }

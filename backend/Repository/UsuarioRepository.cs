@@ -1,5 +1,6 @@
 using System.Data.Common;
 using System.Security.Cryptography.X509Certificates;
+using Biblio.Exceptions;
 using Biblio.models;
 using MySql.Data.MySqlClient;
 
@@ -43,6 +44,39 @@ namespace Biblio.Repositories
             }
             return usuarios;
         }
+        public async Task<Usuario> GetOneUsuarioAsync(int id)
+        {
+            Usuario usuario = new Usuario
+            {
+                Id = 0
+            };
+            using(MySqlConnection conn = new MySqlConnection(_connectionString))
+            {
+                await conn.OpenAsync();
+                string query = "SELECT Id, Nombre, Apellido, Email, FechaRegistro, EstaActivo FROM Usuario WHERE Id = @Id;";
+                using(MySqlCommand command = new MySqlCommand(query, conn))
+                {
+                    command.Parameters.AddWithValue("@Id",id);
+                    using(DbDataReader reader = await command.ExecuteReaderAsync())
+                    {
+                        while (reader.Read())
+                        {
+                             usuario = new Usuario
+                            {
+                                Id= reader.GetInt32(0),
+                                Nombre = reader.GetString(1),
+                                Apellido = reader.GetString(2),
+                                Email = reader.GetString(3),
+                                FechaRegistro = reader.GetDateTime(4),
+                                EstaActivo = reader.GetBoolean(5)
+                            };
+                            
+                        }
+                    }
+                }
+            }
+            return usuario;
+        }
 
         public async Task<bool> PostUsuarioAsync(Usuario usuario)
         {
@@ -64,7 +98,7 @@ namespace Biblio.Repositories
                     if(rowsAffected != 1)
                     {
                         bRet= false;
-                        if(rowsAffected>1)throw new Exception("Ha afectado a mas de una fila de datos, revisar base de datos");
+                        if(rowsAffected>1)throw new MoreThanOneRowException();
                     }
                 }
             }
@@ -96,7 +130,7 @@ namespace Biblio.Repositories
                     if(rowsAffected != 1)
                     {
                         bRet= false;
-                        if(rowsAffected>1)throw new Exception("Ha afectado a mas de una fila, revisa la base de datos");
+                        if(rowsAffected>1)throw new MoreThanOneRowException();
                     }
                 }
             }
@@ -116,7 +150,7 @@ namespace Biblio.Repositories
                     if(rowsAffected != 1)
                     {
                         bRet= false;
-                        if(rowsAffected>1)throw new Exception("Ha afectado a mas de una fila, revisa la base de datos");
+                        if(rowsAffected>1)throw new MoreThanOneRowException();
                     }
                 }
             }

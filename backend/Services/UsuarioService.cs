@@ -16,6 +16,11 @@ namespace Biblio.Services
             List<Usuario> usuarios = await _usuarioRepository.GetUsuariosAsync();
             return usuarios;
         }
+        public async Task<Usuario> GetOneUsuarioAsync(int id)
+        {
+            Usuario usuario = await _usuarioRepository.GetOneUsuarioAsync(id);
+            return usuario;
+        }
 
         public async Task<bool> PostUsuariosAsync(Usuario usuario)
         {
@@ -33,5 +38,7 @@ namespace Biblio.Services
             bool bRet = await _usuarioRepository.DeleteUsuarioAsync(id);
             return bRet;
         }
+
+        
     }
 }

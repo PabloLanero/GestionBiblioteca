@@ -17,6 +17,8 @@ builder.Services.AddScoped<IUsuarioService,UsuarioService>();
 builder.Services.AddScoped<IAutorService,AutorService>();
 builder.Services.AddScoped<ILibroService,LibroService>();
 builder.Services.AddScoped<IEditorialService,EditorialService>();
+builder.Services.AddScoped<IPrestamoRepository,PrestamoRepository>();
+builder.Services.AddScoped<IPrestamoService,PrestamoService>();
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
