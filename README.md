@@ -1,10 +1,22 @@
 # GestionBiblioteca
 
-Este repositorio esta hecho como ejemplo de una api funcional (aun no dockerizada)
+Este repositorio esta hecho como ejemplo de una api funcional dockerizada 
 
-El comando para ejecutarlo es 
+## FrontEnd
+Aun no desarrollado para ver como se muestran los datos en html
 
-docker run -e MYSQL_ROOT_PASSWORD="MySup3rP4ssw0rd!" -e MYSQL_DATABASE="BiblioDB" -dp 1488:3306 mysql
+## BackEnd 
+Desarrollado en .Net 8.0 
 
+## Base de datos
+La base de datos esta en MySQL debido a la familiaridad y la simplicidad de ciertas acciones
 
-docker run -e MYSQL_ROOT_PASSWORD="MySup3rP4ssw0rd!" -e MYSQL_DATABASE="BiblioDB" --mount type=bind,source=./bbddScripts,target=/docker-entrypoint-initdb.d/ -dp 1488:3306 mysql
+## Despliegue
+Este proyecto esta desplegado con dodker en un simple docker-compose.yaml 
+(El cual sigue incomplento al no tener el front)
+
+El comando para ejecutarlo es:
+```
+docker-compose up --build
+```
+Asegurese de estar al inicio de esta carpeta, pudiendo ver el resto de archivos
