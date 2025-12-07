@@ -16,9 +16,9 @@ namespace Biblio.Controllers
             _prestamoService = p_prestamoService;
         }
         [HttpGet]
-        public async Task<ActionResult<List<Prestamo>>> GetPrestamosController()
+        public async Task<ActionResult<List<Prestamo>>> GetPrestamosController([FromHeader(Name = "IdPrestamo")]int IdPrestamo=0,[FromHeader(Name = "IdUsuario")]int IdUsuario=0,[FromHeader(Name = "ISBNLibro")]string ISBNLibro="")
         {
-            List<Prestamo> prestamos = await _prestamoService.GetPrestamosAsync();
+            List<Prestamo> prestamos = await _prestamoService.GetPrestamosAsync(IdPrestamo,IdUsuario, ISBNLibro);
             return Ok(prestamos);
         }
         [HttpPost]

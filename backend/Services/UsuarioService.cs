@@ -11,9 +11,17 @@ namespace Biblio.Services
         {
             _usuarioRepository = p_usuarioRepository;
         }
-        public async Task<List<Usuario>> GetUsuariosAsync()
+        public async Task<List<Usuario>> GetUsuariosAsync(int IdUsuario, string Nombre)
         {
             List<Usuario> usuarios = await _usuarioRepository.GetUsuariosAsync();
+            if(IdUsuario > 0)
+            {
+                usuarios = usuarios.FindAll(usuario => usuario.Id == IdUsuario);
+            }
+            if(!string.IsNullOrEmpty(Nombre))
+            {
+                usuarios = usuarios.FindAll(usuario => usuario.Nombre.Contains(Nombre));
+            }
             return usuarios;
         }
         public async Task<Usuario> GetOneUsuarioAsync(int id)

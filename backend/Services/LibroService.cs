@@ -11,17 +11,27 @@ namespace Biblio.Services
             _libroRepository = p_libroRepository;
         }
 
-        public async Task<List<Libro>> GetLibrosAsync()
+        public async Task<List<Libro>> GetLibrosAsync(string ISBN, string Title)
         {
             List<Libro> libros = await _libroRepository.GetLibrosAsync();
+            //Filtramos por ISBN
+            if(!string.IsNullOrEmpty(ISBN))
+            {
+                libros = libros.FindAll(libro => libro.ISBN.Contains(ISBN));
+            }
+            //Filtramos por titulo
+            if(!string.IsNullOrEmpty(Title))
+            {
+                libros = libros.FindAll(libro => libro.Titulo.Contains(Title));
+            }
             return libros;
         }
+        
         public async Task<Libro> GetOneLibroAsync(string ISBN)
         {
             Libro libro = await _libroRepository.GetOneLibroAsync(ISBN);
             return libro;
         }
-
         public async Task<bool> PostLibroAsync(Libro libro)
         {
             bool bRet = await _libroRepository.PostLibroAsync(libro);

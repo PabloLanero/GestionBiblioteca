@@ -25,9 +25,9 @@ namespace Biblio.Controllers
         /// <return>Returns comment</return>
         /// <response code="200">Ok</response>
         [HttpGet]
-        public async Task<ActionResult<List<Autor>>> GetAutores()
+        public async Task<ActionResult<List<Autor>>> GetAutores([FromHeader (Name = "IdAutor")]int idAutor = 0,[FromHeader (Name = "Nombre")]string Nombre = "")
         {
-            List<Autor> autors = await _autorService.GetAutorsAsync();
+            List<Autor> autors = await _autorService.GetAutorsAsync(idAutor,Nombre);
             return Ok(autors);
         }
         /// <summary>

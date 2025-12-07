@@ -16,10 +16,7 @@ namespace Biblio.Services
             _libroService = p_libroService;
         }
 
-        
-
-
-        public async Task<List<Prestamo>> GetPrestamosAsync()
+        public async Task<List<Prestamo>> GetPrestamosAsync(int idPrestamo, int idUsuario, string ISBNLibro)
         {
             List<GetPrestamoDTO> prestamoDTOs = await _prestamoRepository.GetPrestamosAsync();
             List<Prestamo> prestamos = new List<Prestamo>();
@@ -37,6 +34,18 @@ namespace Biblio.Services
                     Multa = prestamoDTO.Multa,
                 };
                 prestamos.Add(prestamo);
+            }
+            if (idPrestamo > 0)
+            {
+                prestamos = prestamos.FindAll(prestamo => prestamo.Id == idPrestamo);
+            }
+            if (idUsuario > 0)
+            {
+                prestamos = prestamos.FindAll(prestamo => prestamo.Usuario.Id == idUsuario);
+            }
+            if (!string.IsNullOrEmpty(ISBNLibro))
+            {
+                prestamos = prestamos.FindAll(prestamo => prestamo.Libro.ISBN.Contains(ISBNLibro));
             }
             return prestamos;
         }

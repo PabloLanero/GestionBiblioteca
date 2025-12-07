@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Biblio.models;
 using Biblio.Services;
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.InteropServices;
 
 namespace Biblio.Controllers
 {
@@ -18,11 +19,10 @@ namespace Biblio.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Libro>>> GetAllLibros()
+        public async Task<ActionResult<List<Libro>>> GetAllLibros([FromHeader(Name = "ISBN")] string ISBN = "", 
+                                                                [FromHeader(Name = "Title")] string Title = "")
         {
-            List<Libro> lstLibros = await _libroService.GetLibrosAsync();
-            var info =  string.Join( ",", lstLibros );
-            _logger.LogDebug("lstlibros: " + info);
+            List<Libro> lstLibros = await _libroService.GetLibrosAsync(ISBN,Title);
             return Ok(lstLibros);
         }
         [HttpPost]
@@ -38,8 +38,13 @@ namespace Biblio.Controllers
             return Ok(bRet);
         }
 
+        /// <summary>
+        /// Borrara el libro que se indique, tiene que ser el ISBN exacto, sino fallara
+        /// </summary>
+        /// <param name="ISBN">Es necesario para poder borrarlo</param>
+        /// <returns></returns>
         [HttpDelete]
-        public async Task<ActionResult<bool>> DeleteLibroAsync([FromQuery(Name = "ISBN")][Required] string ISBN)
+        public async Task<ActionResult<bool>> DeleteLibroAsync([FromHeader(Name = "ISBN")][Required] string ISBN)
         {
             bool bRet =await _libroService.DeleteLibroAsync(ISBN);
             return Ok(bRet);

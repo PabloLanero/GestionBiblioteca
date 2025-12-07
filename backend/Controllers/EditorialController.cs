@@ -16,9 +16,9 @@ namespace Biblio.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Editorial>>> GetEditorialesAsync()
+        public async Task<ActionResult<List<Editorial>>> GetEditorialesAsync([FromHeader (Name ="IdEditorial")]int IdEditorial = 0,[FromHeader (Name ="Nombre")]string nombre = "")
         {
-            List<Editorial> editorials = await _editorialService.GetEditorialesAsync();
+            List<Editorial> editorials = await _editorialService.GetEditorialesAsync(IdEditorial,nombre);
             return Ok(editorials);
         }
         [HttpPost]

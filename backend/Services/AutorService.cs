@@ -13,9 +13,17 @@ namespace Biblio.Services
         }
 
         
-        public async Task<List<Autor>> GetAutorsAsync()
+        public async Task<List<Autor>> GetAutorsAsync(int IdAutor, string Nombre)
         {
             List<Autor> autors = await _autorRepository.GetAutorsAsync();
+            if (IdAutor>0)
+            {
+                autors = autors.FindAll(autor => autor.Id == IdAutor );
+            }
+            if (!string.IsNullOrEmpty(Nombre))
+            {
+                autors = autors.FindAll(autor => autor.Nombre.Contains(Nombre));
+            }
             return autors;
         }
 

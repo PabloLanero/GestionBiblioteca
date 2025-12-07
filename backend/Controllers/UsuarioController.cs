@@ -16,9 +16,9 @@ namespace Biblio.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Usuario>>> GetAllUsuarios()
+        public async Task<ActionResult<List<Usuario>>> GetAllUsuarios([FromHeader (Name ="IdUsuario")]int IdUsuario = 0, [FromHeader (Name ="Nombre")]string Nombre="")
         {
-            List<Usuario> usuarios = await _usuarioService.GetUsuariosAsync();
+            List<Usuario> usuarios = await _usuarioService.GetUsuariosAsync(IdUsuario,Nombre);
             return Ok(usuarios);
         }
         [HttpPost]
