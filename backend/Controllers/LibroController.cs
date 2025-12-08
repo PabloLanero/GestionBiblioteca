@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Biblio.models;
 using Biblio.Services;
+using Microsoft.Extensions.Logging;
 using System.ComponentModel.DataAnnotations;
-using System.Runtime.InteropServices;
-
+using Serilog;
 namespace Biblio.Controllers
 {
     [ApiController]
@@ -11,10 +11,14 @@ namespace Biblio.Controllers
     public class LibroController : ControllerBase
     {
         private readonly ILogger<LibroController> _logger;
+        private readonly ILoggerFactory _loggerFactory;
         private readonly ILibroService _libroService;
-        public LibroController(ILogger<LibroController> logger, ILibroService libroService)
+        
+        public LibroController(ILogger<LibroController> logger ,ILibroService libroService)
         {
             _logger = logger;
+            
+            
             _libroService =libroService;
         }
 
@@ -22,6 +26,10 @@ namespace Biblio.Controllers
         public async Task<ActionResult<List<Libro>>> GetAllLibros([FromHeader(Name = "ISBN")] string ISBN = "", 
                                                                 [FromHeader(Name = "Title")] string Title = "")
         {
+            Log.Information("Funcionar funciona");
+            Log.Error("Funcionar funciona");
+            Log.Debug("Funcionar funciona");
+            Log.Fatal("Funcionar funciona");
             List<Libro> lstLibros = await _libroService.GetLibrosAsync(ISBN,Title);
             return Ok(lstLibros);
         }

@@ -10,6 +10,8 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       # - ConnectionStrings__DefaultConnection=server=mysql;Port=1488;uid=\"root\";pwd=\"MySup3rP4ssw0rd!\";database=BiblioDB;
+    volumes:
+      - ./logs:/logs
     depends_on:
       - mysql
 

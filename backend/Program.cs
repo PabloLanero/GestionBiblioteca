@@ -1,4 +1,5 @@
 using System.Reflection;
+using Biblio.Controllers;
 using Biblio.Repositories;
 using Biblio.Services;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
@@ -28,8 +29,8 @@ builder.Services.AddSwaggerGen(options =>
     options.SwaggerDoc("v1", new OpenApiInfo
     {
         Version = "v1",
-        Title = "ToDo API",
-        Description = "An ASP.NET Core Web API for managing ToDo items",
+        Title = "API de la biblioteca",
+        Description = "AVISO: NINGUN ID ES AUTO INCREMENTAL, PUEDE PROVOCAR MUCHOS ERRORES",
         TermsOfService = new Uri("https://example.com/terms"),
         Contact = new OpenApiContact
         {
@@ -52,6 +53,8 @@ var app = builder.Build();
 
 app.UseSwagger();
 app.UseSwaggerUI();
+
+//Para crear loggers
 
 
 app.UseHttpsRedirection();
