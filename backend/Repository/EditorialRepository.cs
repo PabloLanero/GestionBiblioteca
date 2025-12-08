@@ -81,9 +81,10 @@ namespace Biblio.Repositories
                         }
                     }
                 }
+                Log.Information("Se ha añadido con exito esta editorial: "+editorial.Id);
             }catch(MoreThanOneRowException ex)
             {
-                Log.Error("Se ha añadido mas de un Autor, deberias de revisar la base de datos: \r\n"+ex.ToString());
+                Log.Error("Se ha añadido mas de una editorial, deberias de revisar la base de datos: \r\n"+ex.ToString());
                 bRet = false;
             }catch(MySqlException ex)
             {
@@ -100,53 +101,87 @@ namespace Biblio.Repositories
         public async Task<bool> PutEditorialAsync(Editorial editorial)
         {
             bool bRet = true;
-            using(MySqlConnection conn = new MySqlConnection(_connectionString))
+            try
             {
-                await conn.OpenAsync();
-                string query = "UPDATE Editorial SET Id = Id, ";
-                if(!string.IsNullOrEmpty(editorial.Nombre)) query += "Nombre = @Nombre , ";
-                if(!string.IsNullOrEmpty(editorial.Direccion)) query += "Direccion = @Direccion , ";
-                if(!string.IsNullOrEmpty(editorial.Telefono))query += "Telefono = @Telefono , ";
-                if(!string.IsNullOrEmpty(editorial.Email))query += "Email = @Email , ";
-                if(DateTime.Now >editorial.FechaFundacion)query += "FechaFundacion = @FechaFundacion , ";
-                if(!string.IsNullOrEmpty(editorial.SitioWeb))query += "SitioWeb = @SitioWeb , ";
-                query +=" Id = Id WHERE Id = @Id ;";
-                using(MySqlCommand command = new MySqlCommand(query, conn))
+                
+                using(MySqlConnection conn = new MySqlConnection(_connectionString))
                 {
-                    if(!string.IsNullOrEmpty(editorial.Nombre))command.Parameters.AddWithValue("@Nombre",editorial.Nombre);
-                    if(!string.IsNullOrEmpty(editorial.Direccion)) command.Parameters.AddWithValue("@Direccion",editorial.Direccion);
-                    if(!string.IsNullOrEmpty(editorial.Telefono))command.Parameters.AddWithValue("@Telefono",editorial.Telefono);
-                    if(!string.IsNullOrEmpty(editorial.Email))command.Parameters.AddWithValue("@Email",editorial.Email);
-                    if(DateTime.Now >editorial.FechaFundacion)command.Parameters.AddWithValue("@FechaFundacion",editorial.FechaFundacion);
-                    if(!string.IsNullOrEmpty(editorial.SitioWeb))command.Parameters.AddWithValue("@SitioWeb",editorial.SitioWeb);
-                    command.Parameters.AddWithValue("@Id",editorial.Id);
-                    int rowsAffected = await command.ExecuteNonQueryAsync();
-                    if(rowsAffected != 1)
+                    await conn.OpenAsync();
+                    string query = "UPDATE Editorial SET Id = Id, ";
+                    if(!string.IsNullOrEmpty(editorial.Nombre)) query += "Nombre = @Nombre , ";
+                    if(!string.IsNullOrEmpty(editorial.Direccion)) query += "Direccion = @Direccion , ";
+                    if(!string.IsNullOrEmpty(editorial.Telefono))query += "Telefono = @Telefono , ";
+                    if(!string.IsNullOrEmpty(editorial.Email))query += "Email = @Email , ";
+                    if(DateTime.Now >editorial.FechaFundacion)query += "FechaFundacion = @FechaFundacion , ";
+                    if(!string.IsNullOrEmpty(editorial.SitioWeb))query += "SitioWeb = @SitioWeb , ";
+                    query +=" Id = Id WHERE Id = @Id ;";
+                    using(MySqlCommand command = new MySqlCommand(query, conn))
                     {
-                        bRet= false;
-                        if(rowsAffected>1)throw new MoreThanOneRowException();
+                        if(!string.IsNullOrEmpty(editorial.Nombre))command.Parameters.AddWithValue("@Nombre",editorial.Nombre);
+                        if(!string.IsNullOrEmpty(editorial.Direccion)) command.Parameters.AddWithValue("@Direccion",editorial.Direccion);
+                        if(!string.IsNullOrEmpty(editorial.Telefono))command.Parameters.AddWithValue("@Telefono",editorial.Telefono);
+                        if(!string.IsNullOrEmpty(editorial.Email))command.Parameters.AddWithValue("@Email",editorial.Email);
+                        if(DateTime.Now >editorial.FechaFundacion)command.Parameters.AddWithValue("@FechaFundacion",editorial.FechaFundacion);
+                        if(!string.IsNullOrEmpty(editorial.SitioWeb))command.Parameters.AddWithValue("@SitioWeb",editorial.SitioWeb);
+                        command.Parameters.AddWithValue("@Id",editorial.Id);
+                        int rowsAffected = await command.ExecuteNonQueryAsync();
+                        if(rowsAffected != 1)
+                        {
+                            bRet= false;
+                            if(rowsAffected>1)throw new MoreThanOneRowException();
+                        }
                     }
                 }
+                Log.Information($"Se ha actualizado con exito esta editorial: {editorial.Id}");
+            }catch(MoreThanOneRowException ex)
+            {
+                Log.Error("Se ha actualizado mas de una editorial, deberias de revisar la base de datos: \r\n"+ex.ToString());
+                bRet = false;
+            }catch(MySqlException ex)
+            {
+                Log.Error("Algo inesperado ha ocurrido, deberias de revisar la sintaxis de la sentencia: \r\n"+ex.ToString());
+                bRet = false;
+            }catch(Exception ex)
+            {
+                Log.Fatal("Ha ocurrido un error inesperado, deberias de revisar la base de datos: \r\n"+ex.ToString());
+                bRet = false;
             }
             return bRet;
         }
         public async Task<bool> DeleteEditorialAsync(int id)
         {
             bool bRet = true;
-            using(MySqlConnection conn = new MySqlConnection(_connectionString))
+            try
             {
-                await conn.OpenAsync();
-                string query = "DELETE FROM Editorial WHERE Id = @Id";
-                using(MySqlCommand command = new MySqlCommand(query, conn))
+                
+                using(MySqlConnection conn = new MySqlConnection(_connectionString))
                 {
-                    command.Parameters.AddWithValue("@Id",id);
-                    int rowsAffected = await command.ExecuteNonQueryAsync();
-                    if(rowsAffected != 1)
+                    await conn.OpenAsync();
+                    string query = "DELETE FROM Editorial WHERE Id = @Id";
+                    using(MySqlCommand command = new MySqlCommand(query, conn))
                     {
-                        bRet = false;
-                        if(rowsAffected >1)throw new MoreThanOneRowException();
+                        command.Parameters.AddWithValue("@Id",id);
+                        int rowsAffected = await command.ExecuteNonQueryAsync();
+                        if(rowsAffected != 1)
+                        {
+                            bRet = false;
+                            if(rowsAffected >1)throw new MoreThanOneRowException();
+                        }
                     }
                 }
+                Log.Information($"Se ha eliminado con extio esta editorial: {id}");
+            }catch(MoreThanOneRowException ex)
+            {
+                Log.Error("Se ha eliminado mas de una editorial, deberias de revisar la base de datos: \r\n"+ex.ToString());
+                bRet = false;
+            }catch(MySqlException ex)
+            {
+                Log.Error("Algo inesperado ha ocurrido, deberias de revisar la sintaxis de la sentencia: \r\n"+ex.ToString());
+                bRet = false;
+            }catch(Exception ex)
+            {
+                Log.Fatal("Ha ocurrido un error inesperado, deberias de revisar la base de datos: \r\n"+ex.ToString());
+                bRet = false;
             }
             return bRet;
         }

@@ -1,0 +1,19 @@
+2025-12-08 10:12:09.554 +00:00 [INF] Se ha seleccionado todos los autores
+2025-12-08 10:13:05.460 +00:00 [INF] Se ha añadido a este autor: 3
+2025-12-08 10:13:21.291 +00:00 [ERR] Algo inesperado ha ocurrido, deberias de revisar la sintaxis de la sentencia: 
+MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry '3' for key 'Autor.PRIMARY'
+   at MySql.Data.MySqlClient.MySqlStream.ReadPacketAsync(Boolean execAsync)
+   at MySql.Data.MySqlClient.NativeDriver.GetResultAsync(Int32 affectedRow, Int64 insertedId, Boolean execAsync)
+   at MySql.Data.MySqlClient.Driver.GetResultAsync(Int32 statementId, Int32 affectedRows, Int64 insertedId, Boolean execAsync)
+   at MySql.Data.MySqlClient.Driver.NextResultAsync(Int32 statementId, Boolean force, Boolean execAsync)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResultAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.MySqlDataReader.NextResultAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteReaderAsync(CommandBehavior behavior, Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.MySqlCommand.ExecuteNonQueryAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at Biblio.Repositories.AutorRepository.PostAutorAsync(Autor autor) in /src/Repository/AutorRepository.cs:line 85
+2025-12-08 10:14:25.164 +00:00 [INF] Se ha seleccionado todos los autores
+2025-12-08 10:14:29.899 +00:00 [INF] Se ha seleccionado todos los autores
+2025-12-08 10:14:37.509 +00:00 [INF] Se ha seleccionado todos los autores
+2025-12-08 10:14:39.910 +00:00 [INF] Se ha seleccionado todos los autores
