@@ -9,3 +9,8 @@
 2025-12-08 10:19:35.661 +00:00 [DBG] Funcionar funciona
 2025-12-08 10:19:35.661 +00:00 [FTL] Funcionar funciona
 2025-12-08 10:19:35.770 +00:00 [INF] Se ha seleccionado todos los libros
+2025-12-08 11:05:03.350 +00:00 [INF] Funcionar funciona
+2025-12-08 11:05:03.364 +00:00 [ERR] Funcionar funciona
+2025-12-08 11:05:03.364 +00:00 [DBG] Funcionar funciona
+2025-12-08 11:05:03.364 +00:00 [FTL] Funcionar funciona
+2025-12-08 11:05:03.369 +00:00 [INF] Se ha seleccionado todos los libros

@@ -1,7 +1,18 @@
 version: '1.0'
 
 services:
+  web: 
+    image: nginx:1.29.3
+    container_name: Frontend
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+    ports:
+      - "80:80"
+    environment:
+      - NGINX_PORT=80
+
   api:
+    container_name: Backend
     build: 
       context: ./backend/ 
       dockerfile: Dockerfile

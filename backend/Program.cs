@@ -46,7 +46,19 @@ builder.Services.AddSwaggerGen(options =>
     var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
-
+//Para el cors
+string  MyAllowSpecificOrigins = "MiPoliticaDejaATodos";
+builder.Services.AddCors(options =>
+{
+    //Se puede configuara para que unos pocos entren, pero aqui no es el caso
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy  =>
+                      {
+                          policy.AllowAnyOrigin()
+                          .AllowAnyHeader()
+                          .AllowAnyMethod();
+                      });
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -54,8 +66,9 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 
-//Para crear loggers
 
+
+app.UseCors(MyAllowSpecificOrigins);
 
 app.UseHttpsRedirection();
 

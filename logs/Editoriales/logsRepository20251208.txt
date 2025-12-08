@@ -1,1 +1,2 @@
 2025-12-08 10:12:22.587 +00:00 [INF] Se ha seleccionado a todas las editoriales
+2025-12-08 11:04:56.813 +00:00 [INF] Se ha seleccionado a todas las editoriales
