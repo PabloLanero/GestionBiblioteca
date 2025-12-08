@@ -12,7 +12,8 @@ namespace Biblio.Repositories
 
         public AutorRepository(IConfiguration _configuration)
         {
-            _connectionString = _configuration.GetConnectionString("BiblioDB") ?? "";
+            _connectionString = Environment.GetEnvironmentVariable("ConnectionString") ?? "";//_configuration.GetConnectionString("BiblioDB") ?? "";
+            System.Console.WriteLine(_connectionString);
             //Esto viene de la libreria SeriLog, se encargara de escribirlo en un txt
             //Habra que mirar a ver si se puede configurar de alguna manera mas optima
             Log.Logger = new LoggerConfiguration().MinimumLevel.Debug()
@@ -24,6 +25,7 @@ namespace Biblio.Repositories
         public async Task<List<Autor>> GetAutorsAsync()
         {
             List<Autor> autors = new List<Autor>();
+            
             try
             {
                 using(MySqlConnection conn = new MySqlConnection(_connectionString))

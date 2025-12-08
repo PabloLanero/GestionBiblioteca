@@ -17,3 +17,72 @@ MySql.Data.MySqlClient.MySqlException (0x80004005): Duplicate entry '3' for key 
 2025-12-08 10:14:29.899 +00:00 [INF] Se ha seleccionado todos los autores
 2025-12-08 10:14:37.509 +00:00 [INF] Se ha seleccionado todos los autores
 2025-12-08 10:14:39.910 +00:00 [INF] Se ha seleccionado todos los autores
+2025-12-08 10:49:21.937 +00:00 [ERR] Revisa la sintaxis de la sentenciaMySql.Data.MySqlClient.MySqlException (0x80004005): Incorrect value in Connection String near 'uid'.
+   at MySql.Data.MySqlClient.MySqlBaseConnectionStringBuilder.AnalyzeConnectionString(String connectionString, Boolean isXProtocol, Boolean isDefaultPort, Boolean isAnalyzed)
+   at MySql.Data.MySqlClient.MySqlConnection..ctor(String connectionString)
+   at Biblio.Repositories.AutorRepository.GetAutorsAsync() in /src/Repository/AutorRepository.cs:line 29
+2025-12-08 10:51:22.419 +00:00 [ERR] Revisa la sintaxis de la sentenciaMySql.Data.MySqlClient.MySqlException (0x80004005): Incorrect value in Connection String near 'uid'.
+   at MySql.Data.MySqlClient.MySqlBaseConnectionStringBuilder.AnalyzeConnectionString(String connectionString, Boolean isXProtocol, Boolean isDefaultPort, Boolean isAnalyzed)
+   at MySql.Data.MySqlClient.MySqlConnection..ctor(String connectionString)
+   at Biblio.Repositories.AutorRepository.GetAutorsAsync() in /src/Repository/AutorRepository.cs:line 29
+2025-12-08 10:51:22.858 +00:00 [ERR] Revisa la sintaxis de la sentenciaMySql.Data.MySqlClient.MySqlException (0x80004005): Incorrect value in Connection String near 'uid'.
+   at MySql.Data.MySqlClient.MySqlBaseConnectionStringBuilder.AnalyzeConnectionString(String connectionString, Boolean isXProtocol, Boolean isDefaultPort, Boolean isAnalyzed)
+   at MySql.Data.MySqlClient.MySqlConnection..ctor(String connectionString)
+   at Biblio.Repositories.AutorRepository.GetAutorsAsync() in /src/Repository/AutorRepository.cs:line 29
+2025-12-08 10:51:55.199 +00:00 [ERR] Revisa la sintaxis de la sentenciaMySql.Data.MySqlClient.MySqlException (0x80004005): Incorrect value in Connection String near 'uid'.
+   at MySql.Data.MySqlClient.MySqlBaseConnectionStringBuilder.AnalyzeConnectionString(String connectionString, Boolean isXProtocol, Boolean isDefaultPort, Boolean isAnalyzed)
+   at MySql.Data.MySqlClient.MySqlConnection..ctor(String connectionString)
+   at Biblio.Repositories.AutorRepository.GetAutorsAsync() in /src/Repository/AutorRepository.cs:line 29
+2025-12-08 10:53:52.794 +00:00 [ERR] Revisa la sintaxis de la sentenciaMySql.Data.MySqlClient.MySqlException (0x80004005): Unable to connect to any of the specified MySQL hosts
+ ---> System.ArgumentException: The value cannot be an empty string. (Parameter 'host')
+   at System.ArgumentException.ThrowNullOrEmptyException(String argument, String paramName)
+   at System.ArgumentException.ThrowIfNullOrEmpty(String argument, String paramName)
+   at System.Net.DnsEndPoint..ctor(String host, Int32 port, AddressFamily addressFamily)
+   at System.Net.Sockets.Socket.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+   at System.Net.Sockets.TcpClient.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+   at MySql.Data.Common.StreamCreator.GetTcpStreamAsync(MySqlConnectionStringBuilder settings, CancellationToken cancellationToken, Boolean execAsync)
+   at MySql.Data.Common.StreamCreator.GetStreamAsync(MySqlConnectionStringBuilder settings, CancellationToken cancellationToken, Boolean execAsync)
+   at MySql.Data.MySqlClient.NativeDriver.OpenAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.NativeDriver.OpenAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.Driver.OpenAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.Driver.CreateAsync(MySqlConnectionStringBuilder settings, Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.Driver.CreateAsync(MySqlConnectionStringBuilder settings, Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.MySqlPool.CreateNewPooledConnectionAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.MySqlPool.GetPooledConnectionAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.MySqlPool.TryToGetDriverAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.MySqlPool.GetConnectionAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.MySqlConnection.OpenAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at Biblio.Repositories.AutorRepository.GetAutorsAsync() in /src/Repository/AutorRepository.cs:line 31
+2025-12-08 10:54:03.186 +00:00 [ERR] Revisa la sintaxis de la sentenciaMySql.Data.MySqlClient.MySqlException (0x80004005): Unable to connect to any of the specified MySQL hosts
+ ---> System.ArgumentException: The value cannot be an empty string. (Parameter 'host')
+   at System.ArgumentException.ThrowNullOrEmptyException(String argument, String paramName)
+   at System.ArgumentException.ThrowIfNullOrEmpty(String argument, String paramName)
+   at System.Net.DnsEndPoint..ctor(String host, Int32 port, AddressFamily addressFamily)
+   at System.Net.Sockets.Socket.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+   at System.Net.Sockets.TcpClient.ConnectAsync(String host, Int32 port, CancellationToken cancellationToken)
+   at MySql.Data.Common.StreamCreator.GetTcpStreamAsync(MySqlConnectionStringBuilder settings, CancellationToken cancellationToken, Boolean execAsync)
+   at MySql.Data.Common.StreamCreator.GetStreamAsync(MySqlConnectionStringBuilder settings, CancellationToken cancellationToken, Boolean execAsync)
+   at MySql.Data.MySqlClient.NativeDriver.OpenAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.NativeDriver.OpenAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.Driver.OpenAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.Driver.CreateAsync(MySqlConnectionStringBuilder settings, Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.Driver.CreateAsync(MySqlConnectionStringBuilder settings, Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.MySqlPool.CreateNewPooledConnectionAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.MySqlPool.GetPooledConnectionAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.MySqlPool.TryToGetDriverAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.MySqlPool.GetConnectionAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at MySql.Data.MySqlClient.MySqlConnection.OpenAsync(Boolean execAsync, CancellationToken cancellationToken)
+   at Biblio.Repositories.AutorRepository.GetAutorsAsync() in /src/Repository/AutorRepository.cs:line 31
+2025-12-08 10:55:27.380 +00:00 [ERR] Revisa la sintaxis de la sentenciaMySql.Data.MySqlClient.MySqlException (0x80004005): Incorrect value in Connection String near 'uid'.
+   at MySql.Data.MySqlClient.MySqlBaseConnectionStringBuilder.AnalyzeConnectionString(String connectionString, Boolean isXProtocol, Boolean isDefaultPort, Boolean isAnalyzed)
+   at MySql.Data.MySqlClient.MySqlConnection..ctor(String connectionString)
+   at Biblio.Repositories.AutorRepository.GetAutorsAsync() in /src/Repository/AutorRepository.cs:line 29
+2025-12-08 10:56:20.875 +00:00 [ERR] Revisa la sintaxis de la sentenciaMySql.Data.MySqlClient.MySqlException (0x80004005): Incorrect value in Connection String near 'uid'.
+   at MySql.Data.MySqlClient.MySqlBaseConnectionStringBuilder.AnalyzeConnectionString(String connectionString, Boolean isXProtocol, Boolean isDefaultPort, Boolean isAnalyzed)
+   at MySql.Data.MySqlClient.MySqlConnection..ctor(String connectionString)
+   at Biblio.Repositories.AutorRepository.GetAutorsAsync() in /src/Repository/AutorRepository.cs:line 30
+2025-12-08 10:58:11.445 +00:00 [INF] server=mysql;Port=1488;uid=root;pwd=MySup3rP4ssw0rd!;database=BiblioDB;
+2025-12-08 10:58:11.649 +00:00 [INF] Se ha seleccionado todos los autores
+2025-12-08 11:04:41.786 +00:00 [INF] Se ha seleccionado todos los autores
+2025-12-08 11:04:43.808 +00:00 [INF] Se ha seleccionado todos los autores
+2025-12-08 11:04:49.930 +00:00 [INF] Se ha seleccionado todos los autores

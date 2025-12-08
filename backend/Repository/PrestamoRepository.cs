@@ -15,7 +15,7 @@ namespace Biblio.Repositories
         private readonly ILibroService _libroService;
         public PrestamoRepository(IConfiguration p_configuration, IUsuarioService p_usuarioService, ILibroService p_libroService)
         {
-            _connectionString = p_configuration.GetConnectionString("BiblioDB") ?? "";
+            _connectionString = Environment.GetEnvironmentVariable("ConnectionString") ?? "";
             _usuarioService = p_usuarioService;
             _libroService = p_libroService;
 

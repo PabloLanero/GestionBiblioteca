@@ -12,7 +12,7 @@ namespace Biblio.Repositories
         private readonly string _connectionString;
         public EditorialRepository(IConfiguration _configuration)
         {
-            _connectionString = _configuration.GetConnectionString("BiblioDB")?? "";
+            _connectionString = Environment.GetEnvironmentVariable("ConnectionString") ?? "";
             //Esto viene de la libreria SeriLog, se encargara de escribirlo en un txt
             //Habra que mirar a ver si se puede configurar de alguna manera mas optima
             Log.Logger = new LoggerConfiguration().MinimumLevel.Debug()
