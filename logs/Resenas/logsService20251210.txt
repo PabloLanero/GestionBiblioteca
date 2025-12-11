@@ -1,0 +1,6 @@
+2025-12-10 17:13:45.890 +00:00 [INF] Ha recogido todos las las resenas
+2025-12-10 17:14:03.272 +00:00 [ERR] Algo ha salido mal:
+La reseña tiene una valoracion no valida
+2025-12-10 17:14:25.779 +00:00 [INF] Se ha añadido la reseña con exito
+2025-12-10 17:14:29.316 +00:00 [INF] Ha recogido todos las las resenas
+2025-12-10 17:14:29.345 +00:00 [INF] Se ha seleccionado con exito todos los libros

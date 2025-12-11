@@ -1,0 +1,85 @@
+2025-12-09 16:25:03.912 +00:00 [ERR] Ha habido un problema al recoger todas las resenas, revisa la cadena de conexion 
+Invalid attempt to access a field before calling Read()
+2025-12-09 16:25:03.941 +00:00 [INF] Ha recogido todos las las resenas
+2025-12-09 16:26:42.745 +00:00 [ERR] Ha habido un problema al recoger todas las resenas, revisa la cadena de conexion 
+Invalid attempt to access a field before calling Read()
+2025-12-09 16:26:42.755 +00:00 [INF] Ha recogido todos las las resenas
+2025-12-09 16:27:43.798 +00:00 [ERR] Ha habido un problema al recoger todas las resenas, revisa la cadena de conexion 
+Invalid attempt to access a field before calling Read()
+2025-12-09 16:27:43.806 +00:00 [INF] Ha recogido todos las las resenas
+2025-12-09 16:29:12.034 +00:00 [ERR] Ha habido un problema al recoger todas las resenas, revisa la cadena de conexion 
+Invalid attempt to access a field before calling Read()
+2025-12-09 16:30:25.197 +00:00 [ERR] Ha habido un problema al recoger todas las resenas, revisa la cadena de conexion 
+Invalid attempt to access a field before calling Read()
+2025-12-09 16:32:07.774 +00:00 [INF] Ha recogido todos las las resenas
+2025-12-09 16:32:07.817 +00:00 [INF] Se ha seleccionado con exito todos los libros
+2025-12-09 16:55:41.052 +00:00 [INF] Ha recogido todos las las resenas
+2025-12-09 16:55:52.900 +00:00 [FTL] Ha habido un problema inesperado: 
+Table 'BiblioDB.Resena' doesn't exist
+-----------------------
+2025-12-09 16:55:56.010 +00:00 [INF] Ha recogido todos las las resenas
+2025-12-09 16:55:58.843 +00:00 [INF] Ha recogido todos las las resenas
+2025-12-09 16:57:08.392 +00:00 [INF] Ha recogido todos las las resenas
+2025-12-09 16:57:10.971 +00:00 [INF] Se ha añadido la reseña con exito
+2025-12-09 16:57:13.887 +00:00 [INF] Ha recogido todos las las resenas
+2025-12-09 16:57:13.906 +00:00 [INF] Se ha seleccionado con exito todos los libros
+2025-12-09 16:57:55.933 +00:00 [FTL] Ha habido un problema inesperado: 
+You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Valoracion = 0 , timestamp('2025-12-09 16:57:48.227000') WHERE  Id=1' at line 2
+-----------------------
+2025-12-09 16:58:11.722 +00:00 [INF] Ha recogido todos las las resenas
+2025-12-09 16:58:11.737 +00:00 [INF] Se ha seleccionado con exito todos los libros
+2025-12-09 16:58:41.370 +00:00 [FTL] Ha habido un problema inesperado: 
+You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Valoracion = 2 , timestamp('2025-12-09 16:57:48.227000') WHERE  Id=1' at line 2
+-----------------------
+2025-12-09 16:58:52.941 +00:00 [INF] Ha recogido todos las las resenas
+2025-12-09 16:58:52.952 +00:00 [INF] Se ha seleccionado con exito todos los libros
+2025-12-09 16:59:14.640 +00:00 [INF] Se ha añadido la reseña con exito
+2025-12-09 16:59:19.423 +00:00 [INF] Ha recogido todos las las resenas
+2025-12-09 16:59:19.441 +00:00 [INF] Se ha seleccionado con exito todos los libros
+2025-12-09 16:59:19.444 +00:00 [INF] Se ha seleccionado con exito todos los libros
+2025-12-09 17:00:10.115 +00:00 [INF] Ha recogido todos las las resenas
+2025-12-09 17:00:10.159 +00:00 [INF] Se ha seleccionado con exito todos los libros
+2025-12-09 17:00:10.162 +00:00 [INF] Se ha seleccionado con exito todos los libros
+2025-12-09 17:00:19.557 +00:00 [FTL] Ha habido un problema inesperado: 
+You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Valoracion = 2 , FechaResena = timestamp('2025-12-09 16:57:48.227000') WHERE  Id' at line 3
+-----------------------
+2025-12-09 17:01:13.621 +00:00 [INF] Se ha actualizado la reseña con exito
+2025-12-09 17:01:19.733 +00:00 [INF] Ha recogido todos las las resenas
+2025-12-09 17:01:19.752 +00:00 [INF] Se ha seleccionado con exito todos los libros
+2025-12-09 17:01:19.756 +00:00 [INF] Se ha seleccionado con exito todos los libros
+2025-12-09 17:01:28.391 +00:00 [INF] Se ha eliminado con exito esta reseña 1
+2025-12-09 17:01:30.755 +00:00 [INF] Se ha eliminado con exito esta reseña 2
+2025-12-09 17:01:35.707 +00:00 [INF] Ha recogido todos las las resenas
+2025-12-09 17:01:41.120 +00:00 [INF] Se ha añadido la reseña con exito
+2025-12-09 17:01:44.213 +00:00 [INF] Ha recogido todos las las resenas
+2025-12-09 17:01:44.228 +00:00 [INF] Se ha seleccionado con exito todos los libros
+2025-12-09 17:01:46.333 +00:00 [INF] Ha recogido todos las las resenas
+2025-12-09 17:01:46.347 +00:00 [INF] Se ha seleccionado con exito todos los libros
+2025-12-09 17:01:48.115 +00:00 [INF] Ha recogido todos las las resenas
+2025-12-09 17:01:48.125 +00:00 [INF] Se ha seleccionado con exito todos los libros
+2025-12-09 17:01:55.297 +00:00 [INF] Se ha añadido la reseña con exito
+2025-12-09 17:01:55.928 +00:00 [INF] Se ha añadido la reseña con exito
+2025-12-09 17:02:00.040 +00:00 [INF] Ha recogido todos las las resenas
+2025-12-09 17:02:00.050 +00:00 [INF] Se ha seleccionado con exito todos los libros
+2025-12-09 17:02:00.053 +00:00 [INF] Se ha seleccionado con exito todos los libros
+2025-12-09 17:02:00.054 +00:00 [INF] Se ha seleccionado con exito todos los libros
+2025-12-09 17:02:15.639 +00:00 [INF] Ha recogido todos las las resenas
+2025-12-09 17:02:15.651 +00:00 [INF] Se ha seleccionado con exito todos los libros
+2025-12-09 17:02:15.653 +00:00 [INF] Se ha seleccionado con exito todos los libros
+2025-12-09 17:02:15.655 +00:00 [INF] Se ha seleccionado con exito todos los libros
+2025-12-09 17:02:31.964 +00:00 [INF] Se ha añadido la reseña con exito
+2025-12-09 17:02:38.228 +00:00 [INF] Ha recogido todos las las resenas
+2025-12-09 17:02:38.240 +00:00 [INF] Se ha seleccionado con exito todos los libros
+2025-12-09 17:02:38.242 +00:00 [INF] Se ha seleccionado con exito todos los libros
+2025-12-09 17:02:38.244 +00:00 [INF] Se ha seleccionado con exito todos los libros
+2025-12-09 17:02:38.246 +00:00 [INF] Se ha seleccionado con exito todos los libros
+2025-12-09 17:02:51.448 +00:00 [INF] Ha recogido todos las las resenas
+2025-12-09 17:02:51.461 +00:00 [INF] Se ha seleccionado con exito todos los libros
+2025-12-09 17:02:51.464 +00:00 [INF] Se ha seleccionado con exito todos los libros
+2025-12-09 17:02:51.466 +00:00 [INF] Se ha seleccionado con exito todos los libros
+2025-12-09 17:02:51.468 +00:00 [INF] Se ha seleccionado con exito todos los libros
+2025-12-09 17:06:19.246 +00:00 [INF] Ha recogido todos las las resenas
+2025-12-09 17:06:19.269 +00:00 [INF] Se ha seleccionado con exito todos los libros
+2025-12-09 17:06:19.272 +00:00 [INF] Se ha seleccionado con exito todos los libros
+2025-12-09 17:06:19.275 +00:00 [INF] Se ha seleccionado con exito todos los libros
+2025-12-09 17:06:19.277 +00:00 [INF] Se ha seleccionado con exito todos los libros

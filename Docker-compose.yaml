@@ -17,11 +17,11 @@ services:
       context: ./backend/ 
       dockerfile: Dockerfile
     ports:
-      - "8841:8080"
+      - "8941:8080"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       # Ten cuidado con poner \" , puede causar errores 
-      - ConnectionString=server=mysql;Port=1488;uid=root;pwd=MySup3rP4ssw0rd!;database=BiblioDB;
+      - ConnectionString=server=mysql;Port=9041;uid=root;pwd=MySup3rP4ssw0rd!;database=BiblioDB;
     volumes:
       - ./logs:/logs
     depends_on:
@@ -31,12 +31,12 @@ services:
     image: mysql:8.0
     container_name: mysql
     ports:
-      - "1488:1488"
+      - "9041:9041"
     environment:
-      - MYSQL_USER=root
+      # - MYSQL_USER=root
       - MYSQL_ROOT_PASSWORD=MySup3rP4ssw0rd!
       - MYSQL_DATABASE=BiblioDB
-      - MYSQL_TCP_PORT=1488
+      - MYSQL_TCP_PORT=9041
     
     volumes:
       - bbddScripts:/var/lib/mysql

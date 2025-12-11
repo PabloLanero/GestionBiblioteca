@@ -1,0 +1,13 @@
+2025-12-09 17:12:43.852 +00:00 [ERR] Algo ha salido mal:
+La reseña tiene una valoracion no valida
+2025-12-09 17:13:01.343 +00:00 [INF] Se ha añadido la reseña con exito
+2025-12-09 17:14:00.214 +00:00 [ERR] Algo ha salido mal:
+La reseña tiene una valoracion no valida
+2025-12-09 17:14:14.048 +00:00 [ERR] Algo ha salido mal:
+La reseña tiene una valoracion no valida
+2025-12-09 17:14:59.791 +00:00 [INF] Ha recogido todos las las resenas
+2025-12-09 17:14:59.808 +00:00 [INF] Se ha seleccionado con exito todos los libros
+2025-12-09 17:14:59.822 +00:00 [INF] Se ha seleccionado con exito todos los libros
+2025-12-09 17:14:59.825 +00:00 [INF] Se ha seleccionado con exito todos los libros
+2025-12-09 17:14:59.828 +00:00 [INF] Se ha seleccionado con exito todos los libros
+2025-12-09 17:14:59.831 +00:00 [INF] Se ha seleccionado con exito todos los libros

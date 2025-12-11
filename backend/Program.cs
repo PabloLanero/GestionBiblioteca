@@ -20,7 +20,8 @@ builder.Services.AddScoped<ILibroService,LibroService>();
 builder.Services.AddScoped<IEditorialService,EditorialService>();
 builder.Services.AddScoped<IPrestamoRepository,PrestamoRepository>();
 builder.Services.AddScoped<IPrestamoService,PrestamoService>();
-
+builder.Services.AddScoped<IResenaRepository,ResenaRepository>();
+builder.Services.AddScoped<IResenaService,ResenaService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

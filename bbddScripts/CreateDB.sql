@@ -50,7 +50,14 @@ CREATE TABLE Prestamo (
     EstadoPrestamo VARCHAR(50),
     Multa DECIMAL(10,2)
 );
-
+CREATE TABLE `Resenas` (
+	`Id` INT ,
+	`Resena` VARCHAR(255) ,
+	`ISBNLibro` VARCHAR(255) ,
+	`IdUsuario` INT,
+	`Valoracion` INT,
+	`FechaResena` DATE
+);
 
 
 INSERT INTO Editorial (Id, Nombre, Direccion, Telefono, Email, FechaFundacion, SitioWeb) VALUES
