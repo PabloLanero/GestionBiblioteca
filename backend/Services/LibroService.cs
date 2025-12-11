@@ -11,9 +11,9 @@ namespace Biblio.Services
             _libroRepository = p_libroRepository;
         }
 
-        public async Task<List<Libro>> GetLibrosAsync(string ISBN, string Title)
+        public async Task<List<Libro>> GetLibrosAsync(string ISBN, string Title, bool OrderAsc)
         {
-            List<Libro> libros = await _libroRepository.GetLibrosAsync();
+            List<Libro> libros = await _libroRepository.GetLibrosAsync(OrderAsc);
             //Filtramos por ISBN
             if(!string.IsNullOrEmpty(ISBN))
             {

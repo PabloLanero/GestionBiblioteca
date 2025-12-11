@@ -3,6 +3,7 @@ using System.Security.Cryptography.X509Certificates;
 using Biblio.Exceptions;
 using Biblio.models;
 using MySql.Data.MySqlClient;
+using Mysqlx.Crud;
 using Serilog;
 namespace Biblio.Repositories
 {
@@ -19,7 +20,7 @@ namespace Biblio.Repositories
         }
 
 
-        public async Task<List<Usuario>> GetUsuariosAsync()
+        public async Task<List<Usuario>> GetUsuariosAsync(bool OrderAsc)
         {
             List<Usuario> usuarios = new List<Usuario>();
             try
@@ -28,7 +29,8 @@ namespace Biblio.Repositories
                 using(MySqlConnection conn = new MySqlConnection(_connectionString))
                 {
                     await conn.OpenAsync();
-                    string query = "SELECT Id, Nombre, Apellido, Email, FechaRegistro, EstaActivo FROM Usuario;";
+                    string query = "SELECT Id, Nombre, Apellido, Email, FechaRegistro, EstaActivo FROM Usuario WHERE 1=1 ";
+                    query += OrderAsc ? " ORDER BY Id ; " : " ORDER BY Id DESC ; ";
                     using(MySqlCommand command = new MySqlCommand(query, conn))
                     {
                         using(DbDataReader reader = await command.ExecuteReaderAsync())

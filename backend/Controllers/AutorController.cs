@@ -25,9 +25,9 @@ namespace Biblio.Controllers
         /// <return>Returns comment</return>
         /// <response code="200">Ok</response>
         [HttpGet]
-        public async Task<ActionResult<List<Autor>>> GetAutores([FromHeader (Name = "IdAutor")]int idAutor = 0,[FromHeader (Name = "Nombre")]string Nombre = "")
+        public async Task<ActionResult<List<Autor>>> GetAutores([FromHeader (Name = "IdAutor")]int idAutor = 0,[FromHeader (Name = "Nombre")]string Nombre = "", [FromHeader (Name ="OrderAscent")] bool OrderAsc = true)
         {
-            List<Autor> autors = await _autorService.GetAutorsAsync(idAutor,Nombre);
+            List<Autor> autors = await _autorService.GetAutorsAsync(idAutor,Nombre,OrderAsc);
             return Ok(autors);
         }
         /// <summary>

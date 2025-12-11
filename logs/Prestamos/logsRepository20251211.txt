@@ -1,0 +1,6 @@
+2025-12-11 15:36:33.626 +00:00 [INF] Se ha seleccionado todos los prestamos
+2025-12-11 15:36:33.665 +00:00 [INF] Se ha seleccionado con exito todos los libros
+2025-12-11 15:36:33.672 +00:00 [INF] Se ha seleccionado con exito todos los libros
+2025-12-11 15:36:39.757 +00:00 [INF] Se ha seleccionado todos los prestamos
+2025-12-11 15:36:39.774 +00:00 [INF] Se ha seleccionado con exito todos los libros
+2025-12-11 15:36:39.777 +00:00 [INF] Se ha seleccionado con exito todos los libros

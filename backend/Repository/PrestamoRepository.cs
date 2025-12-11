@@ -27,7 +27,7 @@ namespace Biblio.Repositories
 
 
         /// <inheritdoc/>
-        public async Task<List<GetPrestamoDTO>> GetPrestamosAsync()
+        public async Task<List<GetPrestamoDTO>> GetPrestamosAsync(bool OrderAsc)
         {
             List<GetPrestamoDTO> prestamos = new List<GetPrestamoDTO>();
             try
@@ -35,7 +35,8 @@ namespace Biblio.Repositories
                 using(MySqlConnection conn = new MySqlConnection(_connectionString))
                 {
                     await conn.OpenAsync();
-                    string query = "SELECT Id, LibroISBN, UsuarioId, FechaPrestamo, FechaDevolucionPrevista, FechaDevolucionReal, EstadoPrestamo, Multa FROM Prestamo;";
+                    string query = "SELECT Id, LibroISBN, UsuarioId, FechaPrestamo, FechaDevolucionPrevista, FechaDevolucionReal, EstadoPrestamo, Multa FROM Prestamo ";
+                    query += OrderAsc ? " ORDER BY Id ; " : " ORDER BY Id DESC ; ";
                     using(MySqlCommand command = new MySqlCommand(query, conn))
                     {
                         using(DbDataReader reader = await command.ExecuteReaderAsync())

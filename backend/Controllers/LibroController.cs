@@ -4,6 +4,7 @@ using Biblio.Services;
 using Microsoft.Extensions.Logging;
 using System.ComponentModel.DataAnnotations;
 using Serilog;
+using Mysqlx.Crud;
 namespace Biblio.Controllers
 {
     [ApiController]
@@ -24,13 +25,10 @@ namespace Biblio.Controllers
 
         [HttpGet]
         public async Task<ActionResult<List<Libro>>> GetAllLibros([FromHeader(Name = "ISBN")] string ISBN = "", 
-                                                                [FromHeader(Name = "Title")] string Title = "")
+                                                                [FromHeader(Name = "Title")] string Title = "",
+                                                                [FromHeader(Name = "OrderAsc")] bool OrderAsc = true)
         {
-            Log.Information("Funcionar funciona");
-            Log.Error("Funcionar funciona");
-            Log.Debug("Funcionar funciona");
-            Log.Fatal("Funcionar funciona");
-            List<Libro> lstLibros = await _libroService.GetLibrosAsync(ISBN,Title);
+            List<Libro> lstLibros = await _libroService.GetLibrosAsync(ISBN,Title, OrderAsc);
             return Ok(lstLibros);
         }
         [HttpPost]

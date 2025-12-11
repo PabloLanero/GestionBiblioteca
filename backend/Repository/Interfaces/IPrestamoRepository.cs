@@ -10,7 +10,7 @@ namespace Biblio.Repositories
         /// <returns>
         /// Devolvera una lista con todos los datos de los usuarios 
         /// </returns>
-        public Task<List<GetPrestamoDTO>> GetPrestamosAsync();
+        public Task<List<GetPrestamoDTO>> GetPrestamosAsync(bool OrderAsc);
         /// <summary>
         /// Este metodo sera para añadir datos en la base de datos de un prestamo
         /// </summary>

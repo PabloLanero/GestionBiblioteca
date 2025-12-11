@@ -1,6 +1,7 @@
 using System.Runtime.CompilerServices;
 using Biblio.models;
 using Biblio.Repositories;
+using Mysqlx.Crud;
 
 namespace Biblio.Services
 {
@@ -16,9 +17,9 @@ namespace Biblio.Services
             _libroService = p_libroService;
         }
 
-        public async Task<List<Prestamo>> GetPrestamosAsync(int idPrestamo, int idUsuario, string ISBNLibro)
+        public async Task<List<Prestamo>> GetPrestamosAsync(int idPrestamo, int idUsuario, string ISBNLibro, bool OrderAsc)
         {
-            List<GetPrestamoDTO> prestamoDTOs = await _prestamoRepository.GetPrestamosAsync();
+            List<GetPrestamoDTO> prestamoDTOs = await _prestamoRepository.GetPrestamosAsync(OrderAsc);
             List<Prestamo> prestamos = new List<Prestamo>();
             foreach( GetPrestamoDTO prestamoDTO in prestamoDTOs)
             {

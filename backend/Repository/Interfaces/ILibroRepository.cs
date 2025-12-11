@@ -8,7 +8,7 @@ namespace Biblio.Repositories
         /// Recoge
         /// </summary>
         /// <returns></returns>
-        public Task<List<Libro>> GetLibrosAsync();
+        public Task<List<Libro>> GetLibrosAsync(bool OrderAsc);
         public Task<Libro> GetOneLibroAsync(string ISBN);
         public Task<bool> PostLibroAsync( Libro libro);
         public Task<bool> PutLibroAsync(Libro libro);

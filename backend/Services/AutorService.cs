@@ -13,9 +13,9 @@ namespace Biblio.Services
         }
 
         
-        public async Task<List<Autor>> GetAutorsAsync(int IdAutor, string Nombre)
+        public async Task<List<Autor>> GetAutorsAsync(int IdAutor, string Nombre, bool OrderAsc)
         {
-            List<Autor> autors = await _autorRepository.GetAutorsAsync();
+            List<Autor> autors = await _autorRepository.GetAutorsAsync(OrderAsc);
             if (IdAutor>0)
             {
                 autors = autors.FindAll(autor => autor.Id == IdAutor );

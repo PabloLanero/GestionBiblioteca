@@ -8,7 +8,7 @@ namespace Biblio.Repositories
         /// Recoge todas las editoriales de la base de datos
         /// </summary>
         /// <returns></returns>
-        public Task<List<Editorial>> GetEditorialesAsync();
+        public Task<List<Editorial>> GetEditorialesAsync(bool OrderAsc);
         /// <summary>
         /// Añade una editorial a la base de datos
         /// </summary>

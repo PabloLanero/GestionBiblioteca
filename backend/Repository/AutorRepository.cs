@@ -22,7 +22,7 @@ namespace Biblio.Repositories
 
         
 
-        public async Task<List<Autor>> GetAutorsAsync()
+        public async Task<List<Autor>> GetAutorsAsync(bool OrderAsc)
         {
             List<Autor> autors = new List<Autor>();
             
@@ -31,7 +31,8 @@ namespace Biblio.Repositories
                 using(MySqlConnection conn = new MySqlConnection(_connectionString))
                 {
                     await conn.OpenAsync();
-                    string query = "SELECT Id, Nombre, Apellido, Nacionalidad, FechaNacimiento, EstaVivo, Biografia FROM Autor WHERE 1=1 ;";
+                    string query = "SELECT Id, Nombre, Apellido, Nacionalidad, FechaNacimiento, EstaVivo, Biografia FROM Autor WHERE 1=1 ";
+                    query += OrderAsc ? " ORDER BY Id ; ":" ORDER BY Id DESC ;";
                     using(MySqlCommand command = new MySqlCommand(query, conn))
                     {
                         using(DbDataReader reader = await command.ExecuteReaderAsync())

@@ -19,7 +19,7 @@ namespace Biblio.Repositories
             .WriteTo.File("/logs/Libros/logsRepository.txt",rollingInterval: RollingInterval.Day).CreateLogger(); 
         }
 
-        public async Task<List<Libro>> GetLibrosAsync()
+        public async Task<List<Libro>> GetLibrosAsync(bool OrderAsc)
         {
             List<Libro> libros = new List<Libro>();
             try{
@@ -27,7 +27,8 @@ namespace Biblio.Repositories
                 using(MySqlConnection conn = new MySqlConnection(_connectionString))
                 {
                     await conn.OpenAsync();
-                    string query = "SELECT ISBN, Titulo, Genero, Precio, Disponible, NumeroPaginas,FechaPublicacion FROM Libro";
+                    string query = "SELECT ISBN, Titulo, Genero, Precio, Disponible, NumeroPaginas,FechaPublicacion FROM Libro ";
+                    query += OrderAsc ? " ORDER BY ISBN ; " : " ORDER BY ISBN DESC ; ";
                     using (MySqlCommand command = new MySqlCommand(query, conn))
                     {
                         using (DbDataReader reader = await command.ExecuteReaderAsync())

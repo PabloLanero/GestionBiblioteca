@@ -19,7 +19,7 @@ namespace Biblio.Repositories
             .WriteTo.File("/logs/Editoriales/logsRepository.txt",rollingInterval:RollingInterval.Day).CreateLogger();
         }
 
-        public async Task<List<Editorial>> GetEditorialesAsync()
+        public async Task<List<Editorial>> GetEditorialesAsync(bool OrderAsc)
         {
             List<Editorial> editorials = new List<Editorial>();
             
@@ -28,6 +28,7 @@ namespace Biblio.Repositories
                 {
                     await conn.OpenAsync();
                     string query = "SELECT Id, Nombre, Direccion, Telefono, Email, FechaFundacion, SitioWeb FROM Editorial ";
+                    query += OrderAsc ? " ORDER BY Id ; ": "ORDER BY Id DESC ;";
                     using(MySqlCommand command = new MySqlCommand(query, conn))
                     {
                         using(DbDataReader reader = await command.ExecuteReaderAsync())

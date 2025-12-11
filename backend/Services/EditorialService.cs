@@ -14,9 +14,9 @@ namespace Biblio.Services
 
         
 
-        public async Task<List<Editorial>> GetEditorialesAsync(int IdEditorial,string nombre)
+        public async Task<List<Editorial>> GetEditorialesAsync(int IdEditorial,string nombre, bool OrderAsc)
         {
-            List<Editorial> editorials = await _editorialRepository.GetEditorialesAsync();
+            List<Editorial> editorials = await _editorialRepository.GetEditorialesAsync(OrderAsc);
             if(IdEditorial > 0)
             {
                 editorials = editorials.FindAll(editorial =>editorial.Id == IdEditorial);

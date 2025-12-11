@@ -4,7 +4,7 @@ namespace Biblio.Repositories
 {
     public interface IUsuarioRepository
     {
-        public Task<List<Usuario>> GetUsuariosAsync();
+        public Task<List<Usuario>> GetUsuariosAsync(bool OrderAsc);
         public Task<Usuario> GetOneUsuarioAsync(int id);
         public Task<bool> PostUsuarioAsync(Usuario usuario);
         public Task<bool> PutUsuarioAsync(Usuario usuario);

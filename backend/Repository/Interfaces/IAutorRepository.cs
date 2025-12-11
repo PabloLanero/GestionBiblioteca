@@ -8,7 +8,7 @@ namespace Biblio.Repositories
         /// Devuelve todos los autores en una lista
         /// </summary>
         /// <returns></returns>
-        public Task<List<Autor>> GetAutorsAsync();
+        public Task<List<Autor>> GetAutorsAsync(bool OrderAsc);
         /// <summary>
         /// Añade un autor de la base de datos
         /// </summary>
