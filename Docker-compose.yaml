@@ -13,9 +13,7 @@ services:
 
   api:
     container_name: Backend
-    build: 
-      context: ./backend/ 
-      dockerfile: Dockerfile
+    image: lanero/bibliopablo
     ports:
       - "8941:8080"
     environment:
